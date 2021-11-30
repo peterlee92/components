@@ -3,7 +3,7 @@ import { Box, Flex, Label, Checkbox } from "theme-ui";
 import { ClickAwayListener } from "@mui/material";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
-interface IDropdown {
+interface ICheckBoxDropdown {
   defaultIds?: number[];
   label: string;
   entities: string;
@@ -12,7 +12,7 @@ interface IDropdown {
   sx: object;
 }
 
-const Dropdown = (props: IDropdown) => {
+const CheckBoxDropdown = (props: ICheckBoxDropdown) => {
   const { sx, defaultIds = [], label, entities, id, onChange } = props;
 
   const data = []; //use this to map out drop down list
@@ -142,4 +142,4 @@ const Dropdown = (props: IDropdown) => {
   );
 };
 
-export default Dropdown;
+export default CheckBoxDropdown;
