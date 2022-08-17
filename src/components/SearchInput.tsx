@@ -1,8 +1,17 @@
-import React, { useState } from "react";
 import { Box, Input, Flex } from "theme-ui";
 import { ClickAwayListener } from "@mui/material";
 
-const SearchInput = (props) => {
+interface ISearchInput {
+  onChange: any;
+  sx: object;
+  data: Array<any>;
+  setData: Function;
+  placeholder: string;
+  value: string;
+  handleClickOption: Function;
+}
+
+const SearchInput = (props: ISearchInput) => {
   const { sx, placeholder, data, setData, handleClickOption, onChange, value } =
     props;
 

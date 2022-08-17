@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Box, Flex, Label, Checkbox } from "theme-ui";
 import { ClickAwayListener } from "@mui/material";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
@@ -10,20 +10,19 @@ interface ICheckBoxDropdown {
   id: string;
   onChange: Function;
   sx: object;
+  data: Array<any>;
 }
 
 const CheckBoxDropdown = (props: ICheckBoxDropdown) => {
-  const { sx, defaultIds = [], label, entities, id, onChange } = props;
+  const { sx, defaultIds = [], label, entities, id, onChange, data= [] } = props;
 
-  const data = []; //use this to map out drop down list
-
-  const [dropdown, setDropdown] = useState(null);
+  const [dropdown, setDropdown] = useState('');
   const [ids, setIds] = useState(defaultIds);
 
-  const handleCheckboxClick = (typeId) => {
+  const handleCheckboxClick = (typeId:number) => {
     let array = [...ids];
 
-    if (typeId === null) {
+    if (typeId === 0) {
       array = [];
     } else {
       if (array.includes(typeId)) {
@@ -60,7 +59,7 @@ const CheckBoxDropdown = (props: ICheckBoxDropdown) => {
             minWidth: `66px`,
           },
         }}
-        onClick={() => setDropdown(dropdown === entities ? null : entities)}
+        onClick={() => setDropdown(dropdown === entities ? '' : entities)}
       >
         {label}{" "}
         <span>
@@ -78,7 +77,7 @@ const CheckBoxDropdown = (props: ICheckBoxDropdown) => {
       {dropdown === entities && (
         <ClickAwayListener
           onClickAway={() => {
-            setDropdown(null);
+            setDropdown('');
           }}
         >
           <Box
@@ -109,7 +108,7 @@ const CheckBoxDropdown = (props: ICheckBoxDropdown) => {
             >
               <Checkbox
                 checked={ids.length === 0 || ids.length === ids.length}
-                onChange={() => handleCheckboxClick(null)}
+                onChange={() => handleCheckboxClick(0)}
               />
               All
             </Label>
